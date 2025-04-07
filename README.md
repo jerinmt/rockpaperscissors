@@ -10,3 +10,4 @@ Completed the project.
 7 April 2025
 Created a branch to implement UI called rps-ui
 
+Completed the UI implementation.
