@@ -6,3 +6,7 @@ This is a rock-paper-scissors game that I am making as part of the Odin project.
 There will only be an index.html file and a scrip.js file at this stage.
 
 Completed the project.
+
+7 April 2025
+Created a branch to implement UI called rps-ui
+

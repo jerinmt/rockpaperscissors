@@ -58,22 +58,17 @@ function playGame() {
     humanScore=0;
     comScore=0;
     let computer, human;
-    for (let i = 0; i < 5; i++) {
+    while (humanScore<5&&comScore<5) {
         computer = getComputerChoice();
-        
         human = getHumanChoice()-0;
-        
         playRound(human, computer);
         console.log(`Your Score:${humanScore}   Computer's Score:${comScore}`);
     }
     if(humanScore>comScore) {
         console.log("Congrats!! You defeated the computer");
     }
-    else if(comScore>humanScore) {
-        console.log("Alas!! You were defeated by the computer");
-    }
     else {
-        console.log("The game ended in a draw!");
+        console.log("Alas!! You were defeated by the computer");
     }
 }
 playGame();
