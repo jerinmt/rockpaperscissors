@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: center;
+}
+.score {
+    border: 2px solid green;
+    font-weight: bold;
+}
+.result {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+}
+.selection {
+    display: flex;
+    gap: 10px;
+    font-size: 30px;
+}
+.buttons {
+    margin-top: 20px;
+}
+button {
+    padding: 10px;
+}

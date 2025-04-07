@@ -1,56 +1,73 @@
-console.log('Hello, the game will be for 5 rounds.');
 let humanScore, comScore;
 function getComputerChoice() {
     let x=Math.floor(Math.random()*3);
     return x+1;
 }
-
-function getHumanChoice() {
-    let x = prompt("What's your choice? (1-Rock 2-Paper 3-Scissors)");
-    return x;
-}
-
 function playRound(humanChoice, computerChoice) {
+    if(humanScore==5||comScore==5) {
+        return;
+    }
+    let humanSign = document.querySelector(".player");
+    let comSign = document.querySelector(".computer");
+    let roundUpdate = document.querySelector(".roundResult");
     switch(humanChoice) {
         case 1:
+            humanSign.innerHTML = "&#9994";
             if(computerChoice==1) {
-                console.log("Both chose Rock!");
+                comSign.innerHTML = "&#9994";
+                roundUpdate.textContent = "Both chose Rock!";
             }
             else if(computerChoice==2) {
-                console.log("You chose Rock, computer chose Paper. \n You lost this round!");
+                comSign.innerHTML = "&#9995";
+                roundUpdate.textContent = "You chose Rock, computer chose Paper. \n You lost this round!";
                 comScore++;
             }
             else {
-                console.log("You chose Rock, computer chose Scissors. \n You won this round!");
+                comSign.innerHTML = "&#9996";
+                roundUpdate.textContent = "You chose Rock, computer chose Scissors. \n You won this round!";
                 humanScore++;
             }
             break;
         case 2: 
+            humanSign.innerHTML = "&#9995";
             if(computerChoice==2) {
-                console.log("Both chose Paper!");
+                comSign.innerHTML = "&#9995";
+                roundUpdate.textContent = "Both chose Paper!";
             }
             else if(computerChoice==3) {
-                console.log("You chose Paper, computer chose Scissors. \n You lost this round!");
+                comSign.innerHTML = "&#9996";
+                roundUpdate.textContent = "You chose Paper, computer chose Scissors. \n You lost this round!";
                 comScore++;
             }
             else {
-                console.log("You chose Paper, computer chose Rock. \n You won this round!");
+                comSign.innerHTML = "&#9994";
+                roundUpdate.textContent = "You chose Paper, computer chose Rock. \n You won this round!";
                 humanScore++;
             }
             break;
         case 3: 
+            humanSign.innerHTML = "&#9996";
             if(computerChoice==3) {
-                console.log("Both chose Scissors!");
+                comSign.innerHTML = "&#9996";
+                roundUpdate.textContent = "Both chose Scissors!";
             }
             else if(computerChoice==1) {
-                console.log("You chose Scissors, computer chose Rock. \n You lost this round!");
+                comSign.innerHTML = "&#9994";
+                roundUpdate.textContent = "You chose Scissors, computer chose Rock. \n You lost this round!";
                 comScore++;
             }
             else {
-                console.log("You chose Scissors, computer chose Paper. \n You won this round!");
+                comSign.innerHTML = "&#9995";
+                roundUpdate.textContent = "You chose Scissors, computer chose Paper. \n You won this round!";
                 humanScore++;
             }
             break;
+    }
+    if(humanScore==5) {
+            document.querySelector(".result").textContent = "Congrats!! You defeated the computer";
+    }
+    if(comScore==5) {
+            document.querySelector(".result").textContent = "Alas!! You were defeated by the computer";
     }
 }
 
@@ -58,17 +75,22 @@ function playGame() {
     humanScore=0;
     comScore=0;
     let computer, human;
-    while (humanScore<5&&comScore<5) {
+    let score = document.querySelector(".score");
+    score.textContent = `Your score:${humanScore}   Computer score:${comScore}`;
+    let buttonPressed = document.querySelector(".buttons");
+    buttonPressed.addEventListener("click", function (Event) {
+        if(Event.target.textContent=="Rock") {
+            human = 1;
+        }
+        if(Event.target.textContent=="Paper") {
+            human = 2;
+        }
+        if(Event.target.textContent=="Scissors") {
+            human = 3;
+        }
         computer = getComputerChoice();
-        human = getHumanChoice()-0;
         playRound(human, computer);
-        console.log(`Your Score:${humanScore}   Computer's Score:${comScore}`);
-    }
-    if(humanScore>comScore) {
-        console.log("Congrats!! You defeated the computer");
-    }
-    else {
-        console.log("Alas!! You were defeated by the computer");
-    }
+        score.textContent = `Your score:${humanScore}   Computer score:${comScore}`;
+    });
 }
 playGame();
